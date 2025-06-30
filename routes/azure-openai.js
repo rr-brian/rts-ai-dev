@@ -13,13 +13,33 @@ router.post('/chat', async (req, res) => {
     const apiKey = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
     const endpoint = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
     const deploymentName = process.env.REACT_APP_AZURE_OPENAI_DEPLOYMENT_NAME;
-    const apiVersion = process.env.REACT_APP_AZURE_OPENAI_API_VERSION;
+    let apiVersion = process.env.REACT_APP_AZURE_OPENAI_API_VERSION;
+    
+    // Debug logging for configuration
+    console.log('Azure OpenAI Configuration:');
+    console.log('- Endpoint:', endpoint ? 'Set' : 'Not set');
+    console.log('- API Key:', apiKey ? 'Set (redacted)' : 'Not set');
+    console.log('- Deployment Name:', deploymentName);
+    console.log('- API Version:', apiVersion);
+    
+    // Fix potential issues with API version format
+    if (apiVersion && apiVersion.includes('REACT_APP_API_URL')) {
+      console.log('Fixing malformed API version string');
+      apiVersion = apiVersion.split('REACT_APP_API_URL')[0].trim();
+      console.log('Corrected API Version:', apiVersion);
+    }
     
     if (!apiKey || !endpoint || !deploymentName || !apiVersion) {
       console.error('Missing Azure OpenAI configuration');
       return res.status(500).json({ 
         error: 'Server configuration error',
-        message: 'Azure OpenAI is not properly configured'
+        message: 'Azure OpenAI is not properly configured',
+        details: {
+          endpoint: !!endpoint,
+          apiKey: !!apiKey,
+          deploymentName: !!deploymentName,
+          apiVersion: !!apiVersion
+        }
       });
     }
     
