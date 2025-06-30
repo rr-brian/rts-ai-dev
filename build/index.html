@@ -1,1 +1,125 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="./favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#0078d4"/><meta name="description" content="RTS AI Toolbox - AI powered enterprise solutions using Azure OpenAI"/><link rel="apple-touch-icon" href="./logo192.png"/><link rel="manifest" href="./manifest.json"/><title>RTS AI Toolbox - Updated June 25 at 3:25 PM</title><script defer="defer" src="./static/js/main.1d918a89.js"></script><link href="./static/css/main.fb15b5c6.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure OpenAI Chat</title>
+    <link rel="stylesheet" href="/styles.css?v=1.0.1">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Add cache control meta tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        .icon-button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 0 5px;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        .icon-button:hover {
+            background-color: #f0f0f0;
+        }
+        #loading-indicator {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">RTS AI Platform</div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Documentation</a>
+                <a href="#">Support</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+        <div class="chat-container">
+        <div class="chat-header">
+            <h1>Azure OpenAI Chat</h1>
+            <div class="header-buttons">
+                <button id="upload-button" class="icon-button" title="Upload File"><i class="fas fa-file-upload"></i></button>
+                <button id="clear-button" class="icon-button" title="Clear Chat"><i class="fas fa-trash-alt"></i></button>
+                <button id="save-button" class="icon-button" title="Save Chat"><i class="fas fa-save"></i></button>
+                <button id="test-api-button" class="icon-button" title="Test API Connection"><i class="fas fa-vial"></i></button>
+            </div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message assistant-message">
+                <div class="message-content">
+                    Hello! I am RAI your personal AI assistant
+                </div>
+            </div>
+        </div>
+        <div class="typing-indicator" id="typing-indicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+        <div class="chat-input-container">
+            <form class="chat-input" id="chat-form">
+                <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off">
+                <button type="submit" id="send-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- File Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload Document</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="fileUploadForm">
+                    <div class="file-input-container">
+                        <label for="fileInput" class="file-input-label">Choose File</label>
+                        <input type="file" id="fileInput" accept=".pdf,.docx,.doc,.xlsx,.xls,.csv,.txt" />
+                        <span id="fileName">No file chosen</span>
+                    </div>
+                    <div id="uploadStatus" class="upload-status"></div>
+                    <button type="submit" class="submit-button">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-copyright">© 2025 RTS AI Platform. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/static/js/chat-debug.js?v=20250630112000"></script>
+    <div id="loading-indicator">Processing...</div>
+    <input type="file" id="file-input" style="display: none;" accept=".pdf,.docx,.doc,.xlsx,.xls,.csv,.txt" />
+</body>
+</html>
